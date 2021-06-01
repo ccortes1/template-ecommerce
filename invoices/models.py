@@ -6,13 +6,15 @@ from django.db import models
 # Utilities
 from utils.models import BasicModel
 
-class Invoice(BasicModel, models.Model):
+class Invoice(BasicModel):
     """Invoice model"""
     client = models.ForeignKey('users.User', on_delete=models.CASCADE)
     total_invoice_value = models.PositiveIntegerField()
 
+    class Meta(BasicModel.Meta):
+        db_table = "invoice"
 
-class items_on_invoice(models.Model, BasicModel):
+class items_on_invoice(BasicModel):
     """items on invoice
     this table is used for connecting
     the invoices table with products table
@@ -22,4 +24,6 @@ class items_on_invoice(models.Model, BasicModel):
     sold_units = models.PositiveIntegerField()
     total_value = models.PositiveIntegerField()
 
+    class Meta(BasicModel.Meta):
+        db_table = "items_on_invoice"
 

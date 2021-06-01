@@ -3,7 +3,7 @@
 # Django
 from django.db import models
 
-class BasicModel(models.Models):
+class BasicModel(models.Model):
     """ Share base model.
     BasicModel acts as an abstract base class from which every
     other model in the project will inherit. This class provides
@@ -25,5 +25,5 @@ class BasicModel(models.Models):
     class Meta:
         """Meta option."""
         abstract = True
-        get_lastst_by = 'created'
+        get_latest_by = 'created'
         ordering = ['-created', '-modified']

@@ -7,22 +7,32 @@ from django.db import models
 from utils.models import BasicModel
 
 
-class Product(models.Model, BasicModel):
+class Product(BasicModel):
     """Product model."""
     name = models.CharField(max_length=50, blank=False)
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
-    label = models.ManyToManyField('Label', on_delete=models.CASCADE)
+    label = models.ManyToManyField('Label', db_table='product_label')
     price = models.PositiveIntegerField()
     brand = models.CharField(max_length=100, blank=False)
     unidades_disponibles = models.PositiveIntegerField()
     description = models.TextField()
     picture = models.ImageField(upload_to='products/picture', blank=False)
 
+    class Meta(BasicModel.Meta):
+        db_table = "product"
 
-class Category(models.Model):
+
+class Category(BasicModel):
     """Category models."""
     name = models.CharField(max_length=50, blank=False)
 
-class Label(models.Model):
+    class Meta(BasicModel.Meta):
+        db_table = "category"
+
+
+class Label(BasicModel):
     """Label model."""
     name = models.CharField(max_length=50, blank=False)
+
+    class Meta(BasicModel.Meta):
+        db_table = 'label'
