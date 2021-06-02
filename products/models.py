@@ -29,6 +29,10 @@ class Category(BasicModel):
     class Meta(BasicModel.Meta):
         db_table = "category"
 
+    def __str__(self):
+        """Return category name"""
+        return self.name
+
 
 class Label(BasicModel):
     """Label model."""
@@ -36,3 +40,7 @@ class Label(BasicModel):
 
     class Meta(BasicModel.Meta):
         db_table = 'label'
+    
+    def __str__(self):
+        """Return label name"""
+        return self.name
