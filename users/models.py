@@ -34,6 +34,13 @@ class User(BasicModel, AbstractUser):
     country = models.CharField(max_length=100, blank=False)
     city = models.CharField(max_length=100, blank=False)
     address = models.CharField(max_length=100, blank=False)
+    DOCUMENT_TYPE = (
+        ('CC', 'Cédula de Ciudadania'),
+        ('CE', 'Cédula de Extrangería'),
+        ('TI', 'Tarjeta de Identidad')
+    )
+    document_type = models.CharField(max_length=2, choices=DOCUMENT_TYPE)
+    document_number = models.CharField(max_length=16)
     is_client = models.BooleanField(
         'client',
         default=True,

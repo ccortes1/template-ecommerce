@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block container %}
+   {% for product in products %}
+      {% include "products/card_product.html" %}
+   {% endfor %}
+{% endblock %}
